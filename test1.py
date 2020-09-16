@@ -8,7 +8,8 @@ Created on Wed Sep 16 10:06:16 2020
 import matplotlib.pyplot as plt
 import pyComtrade
 comtradeObj = pyComtrade.ComtradeRecord()
-comtradeObj.read('./Comtrade TEST 1-1/L1L2L3_75%/BINAIRE/Test_1-1_ABC60_75%_BIN.cfg', './Comtrade TEST 1-1/L1L2L3_75%/BINAIRE/Test_1-1_ABC60_75%_BIN.dat')
+# comtradeObj.read('./Comtrade TEST 1-1/L1L2L3_75%/BINAIRE/Test_1-1_ABC60_75%_BIN.cfg', './Comtrade TEST 1-1/L1L2L3_75%/BINAIRE/Test_1-1_ABC60_75%_BIN.dat')
+comtradeObj.read('./test_data3/test3.cfg', './test_data3/test3.dat')
 
 print(comtradeObj.get_analog_ids())  # print the ids of the analog channels.
 
