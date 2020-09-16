@@ -1,0 +1,9 @@
+Ligne courte 12 km source puissante sans saturation.
+Defaut L1N franc ? 75% de la longueur de ligne (limite Z1-Z2)
+R?seau 225 kV, Icc = 31,5 kA 
+Ligne
+Longueur de ligne = 12 km ; Zd=0,06 +j0,4 ohm/km et
+Zo = 3xZd
+TT = 225kV/ 100V et TC = 1500 A / 1A
+Source
+Zd = Zo = 0,106 + j4 ohm

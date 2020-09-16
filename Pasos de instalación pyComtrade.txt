@@ -1,0 +1,7 @@
+Para instalar el paquete 
+
+- Abrir el terminal de anaconda (anaconda Prompt)
+- Se crea un entorno con la siguiente línea: conda create --name MyEnvironmentName
+- Se activa el entorno: conda activate MyEnvironmentName
+- Se instala el paquete git: conda install git
+- Se instala el paquete pip: conda install pip
