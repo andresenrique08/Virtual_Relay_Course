@@ -33,8 +33,10 @@ def butter_lowpass(cutoff, fs, order):
     b,a = signal.butter(order, normal_cutoff, 'low', analog=True)
     return b,a
 
-cutoff = 50
-fs = np.ceil(1/cutoff * comtradeObj['samp'][-1])
+fk=50
+# fs = np.ceil(1/cutoff * comtradeObj['samp'][-1])
+fs = comtradeObj['samp'][-1]
+cutoff = (fs-fk)/3
 # fs = comtradeObj['samp'][-1]/50
 order = 2
 b,a = butter_lowpass(cutoff, fs, order)
@@ -57,7 +59,7 @@ VA_Filtered = signal.lfilter(b,a,Voltage_A)
 IA_Filtered = signal.lfilter(b,a,Current_A)
 
 
-# print(VA_Filtered)
+print(VA_Filtered)
 # print(len(Voltage_A))
 
 plt.subplot(2, 1, 1)
@@ -74,5 +76,5 @@ plt.xlabel('Time [sec]')
 plt.grid()
 plt.legend()
 
-# plt.subplots_adjust(hspace=0.35)
-# plt.show()
+plt.subplots_adjust(hspace=0.35)
+plt.show()
