@@ -6,7 +6,7 @@ Created on Fri Sep 18 18:31:15 2020
 """
 
 import numpy as np
-from scipy.signal import butter, lfilter, freqz
+from scipy import signal
 from matplotlib import pyplot as plt
 import pyComtrade
 comtradeObj = pyComtrade.ComtradeRecord()
@@ -27,39 +27,52 @@ Current_A = comtradeObj['A'][4]['values']
 time = comtradeObj.get_timestamps()
 
 # Defining methods for the filter
-def butter_lowpass(cutoff, fs, order=5):
-    nyq = 0.5 * fs
-    normal_cutoff = cutoff / nyq
-    b, a = butter(order, normal_cutoff, btype='low', analog=True)
-    return b, a
+def butter_lowpass(cutoff, fs, order):
+    nyq = fs/2
+    normal_cutoff = cutoff/nyq
+    b,a = signal.butter(order, normal_cutoff, 'low', analog=True)
+    return b,a
 
-def butter_lowpass_filter(data, cutoff, fs, order):
-    b, a = butter_lowpass(cutoff, fs, order)
-    y= lfilter(b,a,data)
-    return y
-
-# Filter requirements.
+cutoff = 50
+fs = np.ceil(1/cutoff * comtradeObj['samp'][-1])
+# fs = comtradeObj['samp'][-1]/50
 order = 2
-fs = comtradeObj['samp'][-1]       # sample rate, Hz
-cutoff = 60  # desired cutoff frequency of the filter, Hz
+b,a = butter_lowpass(cutoff, fs, order)
 
-# Filter the data, and plot both the original and filtered signals.
-VA_filter = butter_lowpass_filter(Voltage_A, cutoff, fs, order)
-IA_filter = butter_lowpass_filter(Current_A, cutoff, fs, order)
+w, h = signal.freqs(b, a)
+# fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
+# plt.subplot(2,1,1)
+# plt.title('Butterworth filter frequency response')
+# #plt.plot(0.5*fs*w/np.pi, np.abs(h), 'b')
+# plt.semilogx(0.5*fs*w/np.pi, 20 * np.log10(abs(h)))
+# plt.xlabel('Frequency [radians / second]')
+# plt.ylabel('Amplitude [dB]')
+# plt.margins(0, 0.1)
+# plt.grid(which='both', axis='both')
+# plt.axvline(cutoff, color='green') # cutoff frequency
+# plt.tight_layout()
+
+zi = signal.lfilter_zi(b, a)
+VA_Filtered = signal.lfilter(b,a,Voltage_A)
+IA_Filtered = signal.lfilter(b,a,Current_A)
+
+
+# print(VA_Filtered)
+# print(len(Voltage_A))
 
 plt.subplot(2, 1, 1)
 plt.plot(time, Voltage_A, 'b-', label='data')
-plt.plot(time, VA_filter, 'g-', linewidth=2, label='filtered data')
+plt.plot(time, VA_Filtered, 'g-', linewidth=2, label='filtered data')
 plt.xlabel('Time [sec]')
 plt.grid()
 plt.legend()
 
 plt.subplot(2, 1, 2)
 plt.plot(time, Current_A, 'b-', label='data')
-plt.plot(time, IA_filter, 'g-', linewidth=2, label='filtered data')
+plt.plot(time, IA_Filtered, 'g-', linewidth=2, label='filtered data')
 plt.xlabel('Time [sec]')
 plt.grid()
 plt.legend()
 
-plt.subplots_adjust(hspace=0.35)
-plt.show()
+# plt.subplots_adjust(hspace=0.35)
+# plt.show()
