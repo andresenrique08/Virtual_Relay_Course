@@ -1,4 +1,4 @@
-Para instalar el paquete 
+Para instalar el paquete: https://medium.com/i-want-to-be-the-very-best/installing-packages-from-github-with-conda-commands-ebf10de396f4
 
 - Abrir el terminal de anaconda (anaconda Prompt)
 - Se crea un entorno con la siguiente línea: conda create --name MyEnvironmentName

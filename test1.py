@@ -10,7 +10,7 @@ import pyComtrade
 comtradeObj = pyComtrade.ComtradeRecord()
 #comtradeObj.read('./Comtrade TEST 1-1/Nasser/Sampling1M.cfg', './Comtrade TEST 1-1/Nasser/Sampling1M.dat')
 comtradeObj.read('./Comtrade TEST 1-1/L1L2L3_75%/BINAIRE/Test_1-1_ABC60_75%_BIN.cfg', './Comtrade TEST 1-1/L1L2L3_75%/BINAIRE/Test_1-1_ABC60_75%_BIN.dat')
-# comtradeObj.read('./test_data3/test3.cfg', './test_data3/test3.dat')
+#comtradeObj.read('./test_data3/test3.cfg', './test_data3/test3.dat')
 
 print('Los analogos',comtradeObj.get_analog_ids())  # print the ids of the analog channels.
 print('Los digitales',comtradeObj.get_digital_ids())  # print the ids of the analog channels.
@@ -22,7 +22,6 @@ print('Sampling rate is {} samples/sec.'.format(comtradeObj['samp'][-1]))
 
 # Reading channel 4:
 AnalogChannelData = comtradeObj['A'][1]['values']
-
 DigitalChannelData = comtradeObj['A'][4]['values']
 
 # Reading time vector:
