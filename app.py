@@ -16,11 +16,12 @@ from tkinter import filedialog
 # app
 #funcion para cargar
 
-def abrir():
+comtradeObj = pyComtrade.ComtradeRecord()
+def abrir(comtradeObj):
     ar=filedialog.askopenfilename(title="Abrir")#,filetypes=(("Archivos COMTRADE .cfg y .dat",".")))
    
     dat=filedialog.askopenfilename(title="Abrir")#,filetypes=(("Archivos COMTRADE.dat ",".dat")))
-    comtradeObj = pyComtrade.ComtradeRecord()
+    
     comtradeObj.read(ar,dat)
     number_of_samples = comtradeObj['endsamp'][-1]
     sampling_freq=comtradeObj['samp'][-1]
@@ -33,7 +34,7 @@ def abrir():
     messagebox.showinfo("Información de los datos" ,c)
     messagebox.showinfo("Información de los datos" ,d)
 
-#def inicial(comtradeObj):
+def inicial(comtradeObj):
     print(len(comtradeObj['A'][0]['values']))
     time = comtradeObj.get_timestamps()
     print(len(time))
@@ -124,9 +125,9 @@ bhelp.add_command(label="Ayuda", command=ayuda)
 bmenu.add_cascade(label="Paso a paso",menu=bhelp)
 
 
-Button(raiz,text="Abrir archivos",command=abrir).pack()
+Button(raiz,text="Abrir archivos",command=abrir(comtradeObj)).pack()
 
-bi=Button(mifr,text="Mostrar señales de entrada",command=abrir)
+bi=Button(mifr,text="Mostrar señales de entrada",command=abrir(comtradeObj))
 bi.grid(row=4,column=1,sticky="w")
 
 t1=Label(mifr,text="introduzca frecuencia de muestro del rele",fg="green")
