@@ -142,8 +142,8 @@ def DFT(time, data, fk, fs_user_cycle):
             Xs_temp=xi[k]*np.sin(2*np.pi*k/(N))
             Xs_sum=Xs_sum+Xs_temp
             
-        Xc[i]= 2/(N)*Xc_sum
-        Xs[i]= 2/(N)* Xs_sum
+        Xc[i]= 2/(N*np.sqrt(2))*Xc_sum
+        Xs[i]= 2/(N*np.sqrt(2))* Xs_sum
         
     return t, Xc, Xs
         
@@ -318,19 +318,19 @@ def DFT_boton():
     f.suptitle('DFT En Magnitud', y=0.92, fontsize=16)
     
     # Plot Voltages
-    axarr[0,0].plot(time_sub[:,0], V_sub[:,0], 'b-', label='Phase A')
+    #axarr[0,0].plot(time_sub[:,0], V_sub[:,0], 'b-', label='Phase A')
     axarr[0,0].plot( t[:,0], X_V[:,0], 'c-', label='Phase A FFT(mag)')
-    axarr[1,0].plot(time_sub[:,1], V_sub[:,1], 'r-', label='Phase B')
+    #axarr[1,0].plot(time_sub[:,1], V_sub[:,1], 'r-', label='Phase B')
     axarr[1,0].plot( t[:,2], X_V[:,2], 'm-', label='Phase B FFT(mag)')
-    axarr[2,0].plot(time_sub[:,2], V_sub[:,2], label='Phase C')
+    #axarr[2,0].plot(time_sub[:,2], V_sub[:,2], label='Phase C')
     axarr[2,0].plot( t[:,1], X_V[:,1], 'y-', label='Phase C FFT(mag)')
     
     # Plot Currents
-    axarr[0,1].plot(time_sub[:,3], C_sub[:,0], 'b-', label='Phase A')
+    #axarr[0,1].plot(time_sub[:,3], C_sub[:,0], 'b-', label='Phase A')
     axarr[0,1].plot( t[:,3], X_C[:,0], 'c-', label='Phase A FFT(mag)')
-    axarr[1,1].plot(time_sub[:,4], C_sub[:,1], 'r-', label='Phase B')
+    #axarr[1,1].plot(time_sub[:,4], C_sub[:,1], 'r-', label='Phase B')
     axarr[1,1].plot( t[:,4], X_C[:,2], 'm-', label='Phase B FFT(mag)')
-    axarr[2,1].plot(time_sub[:,5], C_sub[:,2], 'g-', label='Phase C')
+    #axarr[2,1].plot(time_sub[:,5], C_sub[:,2], 'g-', label='Phase C')
     axarr[2,1].plot( t[:,5], X_C[:,1], 'y-', label='Phase C FFT(mag)')
     
     for i in np.arange(3):
@@ -412,6 +412,12 @@ def fasores_boton():
     label_fas2.grid(row=5,column=0)
     label_fas3.config(text=['Voltaje fase B:', "{:.2f}".format(np.double(X_V[-1:,1])), 'V', "{:.2f}".format(np.double(Y_V[-1:,1])),'°'])
     label_fas3.grid(row=6,column=0)
+    label_fas4.config(text=['Corriente fase A:', "{:.2f}".format(np.double(X_C[-1:,0])), 'A', "{:.2f}".format(np.double(Y_C[-1:,0])),'°'])
+    label_fas4.grid(row=7,column=0)
+    label_fas5.config(text=['Corriente fase B:', "{:.2f}".format(np.double(X_C[-1:,1])), 'A', "{:.2f}".format(np.double(Y_C[-1:,1])),'°'])
+    label_fas5.grid(row=8,column=0)
+    label_fas6.config(text=['Corriente fase C:', "{:.2f}".format(np.double(X_C[-1:,2])), 'A', "{:.2f}".format(np.double(Y_C[-1:,2])),'°'])
+    label_fas6.grid(row=9,column=0)
 #------------------------------------------------------------------
 # MAIN
 raiz=Tk()
@@ -528,7 +534,7 @@ label22.grid(row=0,column=0)
 b3=Button(frame22,text="Fasores",command=fasores_boton)
 b3.grid(row=1,column=0)
 
-label_fas0 = Label(frame22, text = 'Los fasores resultantes son:')
+label_fas0 = Label(frame22, text = 'Los fasores resultantes en rms son:')
 label_fas0.grid_forget()
 label_fas1 = Label(frame22, text = 'Aqui se mostrara el fasor 1',fg="blue")
 label_fas1.grid_forget()
@@ -536,6 +542,12 @@ label_fas2 = Label(frame22, text = 'Aqui se mostrara el fasor 2',fg="red")
 label_fas2.grid_forget()
 label_fas3 = Label(frame22, text = 'Aqui se mostrara el fasor 3',fg="green")
 label_fas3.grid_forget()
+label_fas4 = Label(frame22, text = 'Aqui se mostrara el fasor 1',fg="blue")
+label_fas4.grid_forget()
+label_fas5 = Label(frame22, text = 'Aqui se mostrara el fasor 2',fg="red")
+label_fas5.grid_forget()
+label_fas6 = Label(frame22, text = 'Aqui se mostrara el fasor 3',fg="green")
+label_fas6.grid_forget()
 
 
 
