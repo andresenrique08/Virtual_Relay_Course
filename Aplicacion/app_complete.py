@@ -321,17 +321,17 @@ def DFT_boton():
     #axarr[0,0].plot(time_sub[:,0], V_sub[:,0], 'b-', label='Phase A')
     axarr[0,0].plot( t[:,0], X_V[:,0], 'c-', label='Phase A FFT(mag)')
     #axarr[1,0].plot(time_sub[:,1], V_sub[:,1], 'r-', label='Phase B')
-    axarr[1,0].plot( t[:,2], X_V[:,2], 'm-', label='Phase B FFT(mag)')
+    axarr[1,0].plot( t[:,1], X_V[:,1], 'm-', label='Phase B FFT(mag)')
     #axarr[2,0].plot(time_sub[:,2], V_sub[:,2], label='Phase C')
-    axarr[2,0].plot( t[:,1], X_V[:,1], 'y-', label='Phase C FFT(mag)')
+    axarr[2,0].plot( t[:,2], X_V[:,2], 'y-', label='Phase C FFT(mag)')
     
     # Plot Currents
     #axarr[0,1].plot(time_sub[:,3], C_sub[:,0], 'b-', label='Phase A')
     axarr[0,1].plot( t[:,3], X_C[:,0], 'c-', label='Phase A FFT(mag)')
     #axarr[1,1].plot(time_sub[:,4], C_sub[:,1], 'r-', label='Phase B')
-    axarr[1,1].plot( t[:,4], X_C[:,2], 'm-', label='Phase B FFT(mag)')
+    axarr[1,1].plot( t[:,4], X_C[:,1], 'm-', label='Phase B FFT(mag)')
     #axarr[2,1].plot(time_sub[:,5], C_sub[:,2], 'g-', label='Phase C')
-    axarr[2,1].plot( t[:,5], X_C[:,1], 'y-', label='Phase C FFT(mag)')
+    axarr[2,1].plot( t[:,5], X_C[:,2], 'y-', label='Phase C FFT(mag)')
     
     for i in np.arange(3):
         axarr[i,0].set_xlabel('Time [sec]')
@@ -353,17 +353,17 @@ def DFT_boton():
     #axarr[0,0].plot(time_sub[:,0], V_sub[:,0], 'b-', label='Phase A')
     axarr[0,0].plot( t[:,0], Y_V[:,0], 'c-', label='Phase A FFT[ang(rad)]')
     #axarr[1,0].plot(time_sub[:,1], V_sub[:,1], 'r-', label='Phase B')
-    axarr[1,0].plot( t[:,1], Y_V[:,2], 'm-', label='Phase B FFT[ang(rad)]')
+    axarr[1,0].plot( t[:,1], Y_V[:,1], 'm-', label='Phase B FFT[ang(rad)]')
     #axarr[2,0].plot(time_sub[:,2], V_sub[:,2], label='Phase C')
-    axarr[2,0].plot( t[:,2], Y_V[:,1], 'y-', label='Phase C FFT[ang(rad)]')
+    axarr[2,0].plot( t[:,2], Y_V[:,2], 'y-', label='Phase C FFT[ang(rad)]')
     
     # Plot Currents
     #axarr[0,1].plot(time_sub[:,3], C_sub[:,0], 'b-', label='Phase A')
     axarr[0,1].plot( t[:,3], Y_C[:,0], 'c-', label='Phase A FFT[ang(rad)]')
     #axarr[1,1].plot(time_sub[:,4], C_sub[:,1], 'r-', label='Phase B')
-    axarr[1,1].plot( t[:,4], Y_C[:,2], 'm-', label='Phase B FFT[ang(rad)]')
+    axarr[1,1].plot( t[:,4], Y_C[:,1], 'm-', label='Phase B FFT[ang(rad)]')
     #axarr[2,1].plot(time_sub[:,5], C_sub[:,2], 'g-', label='Phase C')
-    axarr[2,1].plot( t[:,5], Y_C[:,1], 'y-', label='Phase C FFT[ang(rad)]')
+    axarr[2,1].plot( t[:,5], Y_C[:,2], 'y-', label='Phase C FFT[ang(rad)]')
     
     for i in np.arange(3):
         axarr[i,0].set_xlabel('Time [sec]')
@@ -388,16 +388,16 @@ def fasores_boton():
     y_pos = [0, 0,0]
     
     ax[0].quiver(x_pos, y_pos, Xc_V[-1,0], Xs_V[-1,0], angles='xy', scale_units = 'xy', scale=1, color=['b'], label='Fase A')  
-    ax[0].quiver(x_pos, y_pos, Xc_V[-1,2], Xs_V[-1,2], angles='xy', scale_units = 'xy', scale=1, color=['r'], label='Fase B')  
-    ax[0].quiver(x_pos, y_pos, Xc_V[-1,1], Xs_V[-1,1], angles='xy', scale_units = 'xy', scale=1, color=['g'], label='Fase C')  
+    ax[0].quiver(x_pos, y_pos, Xc_V[-1,1], Xs_V[-1,1], angles='xy', scale_units = 'xy', scale=1, color=['r'], label='Fase B')  
+    ax[0].quiver(x_pos, y_pos, Xc_V[-1,2], Xs_V[-1,2], angles='xy', scale_units = 'xy', scale=1, color=['g'], label='Fase C')  
     ax[0].axis([-1.2*lim_axis_V, 1.2*lim_axis_V, -1.2*lim_axis_V, 1.2*lim_axis_V]) 
     ax[0].set_title('Voltaje [V]')
     ax[0].legend() #<-- Se nombran las leyendas
     ax[0].grid(b=True, which='major') #<-- plot grid lines
     
     ax[1].quiver(x_pos, y_pos, Xc_C[-1,0], Xs_C[-1,0], angles='xy', scale_units = 'xy', scale=1, color=['b'], label='Fase A')  
-    ax[1].quiver(x_pos, y_pos, Xc_C[-1,2], Xs_C[-1,2], angles='xy', scale_units = 'xy', scale=1, color=['r'], label='Fase B')  
-    ax[1].quiver(x_pos, y_pos, Xc_C[-1,1], Xs_C[-1,1], angles='xy', scale_units = 'xy', scale=1, color=['g'], label='Fase C')  
+    ax[1].quiver(x_pos, y_pos, Xc_C[-1,1], Xs_C[-1,1], angles='xy', scale_units = 'xy', scale=1, color=['r'], label='Fase B')  
+    ax[1].quiver(x_pos, y_pos, Xc_C[-1,2], Xs_C[-1,2], angles='xy', scale_units = 'xy', scale=1, color=['g'], label='Fase C')  
     ax[1].axis([-1.2*lim_axis_C, 1.2*lim_axis_C, -1.2*lim_axis_C, 1.2*lim_axis_C]) 
     ax[1].set_title('Corriente [A]')
     ax[1].legend() #<-- Se nombran las leyendas
@@ -410,7 +410,7 @@ def fasores_boton():
     label_fas1.grid(row=4,column=0)
     label_fas2.config(text=['Voltaje fase B:', "{:.2f}".format(np.double(X_V[-1:,1])), 'V', "{:.2f}".format(np.double(Y_V[-1:,1])),'°'])
     label_fas2.grid(row=5,column=0)
-    label_fas3.config(text=['Voltaje fase B:', "{:.2f}".format(np.double(X_V[-1:,1])), 'V', "{:.2f}".format(np.double(Y_V[-1:,1])),'°'])
+    label_fas3.config(text=['Voltaje fase C:', "{:.2f}".format(np.double(X_V[-1:,2])), 'V', "{:.2f}".format(np.double(Y_V[-1:,1])),'°'])
     label_fas3.grid(row=6,column=0)
     label_fas4.config(text=['Corriente fase A:', "{:.2f}".format(np.double(X_C[-1:,0])), 'A', "{:.2f}".format(np.double(Y_C[-1:,0])),'°'])
     label_fas4.grid(row=7,column=0)
