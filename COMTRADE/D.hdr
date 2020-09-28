@@ -1,0 +1,47 @@
+Location        : EL PARAISO
+Machine name    : Q1
+Record number   : 7965
+Trigger         : Analogue under on channel 17  'LG1-TENS-FASE A'
+Trigger time    : 16:38:27.451692 domingo, 27 de marzo de 2016
+Record length   : 180.5 cycles
+ Analogue Channel            Pre-fault Immediate  Final Post-Clearance  Units
+===========================================================================================
+  1 LG1-CTE-FASE A              87.70   1562.68  238.23     238.23 A
+  2 LG1-CTE-FASE B              93.22    220.28  232.71     232.71 A
+  3 LG1-CTE-FASE C              81.48   1233.98   95.98      95.98 A
+  4 LG1-CTE-NEUTRO              11.05    326.62  105.65     105.65 A
+  5 LG2--CTE-FASE A             88.39   1572.35  245.83     246.52 A
+  6 LG2--CTE-FASE B             94.60    225.80  234.78     234.09 A
+  7 LG2--CTE-FASE C             80.10   1229.84   98.75      98.75 A
+  8 LG2--CTE-NETRO              15.88    339.74  106.34     106.34 A
+  9 SM-CTE-FASE A              389.46   4296.50   17.26      17.26 A
+ 10 SM-CTE-FASE B              395.68    461.97   27.62      27.62 A
+ 11 SM-CTE-FASE C              388.08   1641.40  419.84     419.84 A
+ 12 SM-CTE-NEUTRO               20.03   2643.36  417.08     417.08 A
+ 13 CI-CTE-FASE A             6957.13   6957.13 6957.13    6957.13 A
+ 14 CI-CTE-FASE B              279.67    311.43   26.24      26.24 A
+ 15 CI-CTE-FASE C              272.07   1664.19   26.93      26.93 A
+ 16 CI-CTE-NEUTRO               11.05   1731.86   15.19      15.19 A
+ 17 LG1-TENS-FASE A            129.82    110.21  130.86     130.86 kV
+ 18 LG1-TENS-FASE B            129.95    128.58  130.57     130.59 kV
+ 19 LG1-TENS-FASE C            129.58    114.24  129.99     129.97 kV
+ 20 LG1-TENS-RESIDUA             0.26      0.26    0.26       0.26 kV
+ 21 LG2-TENS-FASE A            129.00    109.55  130.04     130.04 kV
+ 22 LG2-TENS-FASE B            130.06    128.65  130.68     130.68 kV
+ 23 LG2-TENS-FASE C            129.29    113.93  129.69     129.67 kV
+ 24 LG2-TENS-RESIDUA             1.14     23.75    5.80       5.80 kV
+ 25 SM-TENS-FASE A             129.77    109.76  125.76     125.74 kV
+ 26 SM-TENS-FASE B             129.99    128.45  131.78     131.76 kV
+ 27 SM-TENS-FASE C             129.49    114.15  130.00     129.99 kV
+ 28 SM-TENS-RESIDUA              1.19     23.78   42.18      42.16 kV
+ 29 CI-TENS-FASE A             129.75    110.12  130.79     130.79 kV
+ 30 CI-TENS-FASE B             130.46    129.03  131.07     131.08 kV
+ 31 CI-TENS-FASE C             129.56    114.17  129.97     129.97 kV
+ 32 CI-TENS-RESIDUA              1.23     24.39    6.37       6.37 kV
+===========================================================================================
+ Digital Channel              State  Time (ms)
+==============================================
+==============================================
+
+ TIME SYNCH - LOCKED:IRIGB/Other
+==============================================

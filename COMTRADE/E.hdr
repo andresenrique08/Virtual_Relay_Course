@@ -1,0 +1,19 @@
+Trigger				N[VPAR] > 0.2 PU
+Fault location
+	PAR			No fault
+	TUN			No fault
+Date				2016-03-27T16:40:56-0500
+Equipment			Ready
+Equipment synchronization		Locked
+Time quality			Locked
+Memory usage
+	Fault recorder		3.58%
+	Disturbance recorder		10.43%
+	Traveling wave recorder		38.02%
+	Steady-state recorder		39.42%
+	SOE recorder			3.67%
+	Log			29.52%
+Firmware version			RPV311-11A04
+Configuration revision		34
+CFG file MD5SUM			0ae6a032256e7ff91a394e1f2815d178
+DAT file MD5SUM			caaf64e976f593b1e171a17a083545a6
