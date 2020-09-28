@@ -96,13 +96,6 @@ def guardara():
     elif e3=="":
         messagebox.showinfo("Introduzca parametros", "Introduzca la relación de transformación del secundario" )
     
-    
-    
-    
-    
-    
-    
-    
 def subsampling(data):
     # time is the vector of time
     # data is the vector with the signal
@@ -132,8 +125,8 @@ def subsampling(data):
         new_time[i*N1:i*N1+N1] = np.linspace(ti[0], ti[-1], N1, endpoint=False)
         
     return (new_time,new_data)
-def plot():
-    
+
+def plot():    
     global V_sub,C_sub,time_sub
     N_tot = np.int(N*fk/fs_comtrade)*e1
     V_sub = np.empty(([N_tot,3]))
@@ -193,8 +186,8 @@ def plot3():
     N_tot = np.int(N*fk/fs_comtrade)*e1
     global dig_V_sub,dig_C_sub,fs_user_cycle
     fs_user_cycle=e1
-    dig_V_sub = np.empty(([N_tot,3]))
-    dig_C_sub = np.empty(([N_tot,3]))
+    dig_V_sub = np.empty([N_tot,3])
+    dig_C_sub = np.empty([N_tot,3])
     for i in np.arange(6):
         if i<3:
             dig_V_sub[:,i] = quantizer(V_sub[:,i], quantizing_bits_V)
@@ -206,12 +199,12 @@ def plot3():
     f.suptitle('Digitalización de la señal', y=0.92, fontsize=16)
     
     # Plot Voltages
-    axarr[0,0].plot(time_sub[:,0][0:fs_user_cycle], V_sub[:,0][0:fs_user_cycle], 'b-', label='Phase A')
-    axarr[0,0].plot( time_sub[:,0][0:fs_user_cycle], dig_V_sub[:,0][0:fs_user_cycle], 'c-', label='Phase A digital')
-    axarr[1,0].plot(time_sub[:,1][0:fs_user_cycle], V_sub[:,1][0:fs_user_cycle], 'r-', label='Phase B')
-    axarr[1,0].plot( time_sub[:,1][0:fs_user_cycle], dig_V_sub[:,1][0:fs_user_cycle], 'm-', label='Phase B digital')
-    axarr[2,0].plot(time_sub[:,2][0:fs_user_cycle], V_sub[:,2][0:fs_user_cycle], 'g-', label='Phase C')
-    axarr[2,0].plot( time_sub[:,2][0:fs_user_cycle], dig_V_sub[:,2][0:fs_user_cycle], 'y-', label='Phase C digital')
+    axarr[0,0].plot(time_sub[:,0], V_sub[:,0], 'b-', label='Phase A')
+    axarr[0,0].plot( time_sub[:,0], dig_V_sub[:,0], 'c-', label='Phase A digital')
+    axarr[1,0].plot(time_sub[:,1], V_sub[:,1], 'r-', label='Phase B')
+    axarr[1,0].plot( time_sub[:,1], dig_V_sub[:,1], 'm-', label='Phase B digital')
+    axarr[2,0].plot(time_sub[:,2], V_sub[:,2], 'g-', label='Phase C')
+    axarr[2,0].plot( time_sub[:,2], dig_V_sub[:,2], 'y-', label='Phase C digital')
     
     # Plot Currents
     axarr[0,1].plot(time_sub[:,3][0:fs_user_cycle], C_sub[:,0][0:fs_user_cycle], 'b-', label='Phase A')
@@ -240,8 +233,8 @@ def walsh(data):
     # fk is the frequency of the system
     # fs_user_cycle is the sample rate given by user
     
-    Nn=np.int(fs_user_cycle)
-    N_tot =(len(data)-Nn)
+    Nn=fs_user_cycle
+    N_tot =len(data)-Nn
     Xc = [0]*N_tot
     Xs = [0]*N_tot
     t = [0]*N_tot
@@ -258,17 +251,15 @@ def walsh(data):
             Xs_sum=Xs_sum+Xs_temp
             
         Xc[i]= 2/(Nn)*Xc_sum
-        Xs[i]= 2/(Nn)* Xs_sum
-        
+        Xs[i]= 2/(Nn)*Xs_sum        
     return t, Xc, Xs
 
 def plot4():
-    #Nn=np.int(fs_user_cycle)
-    N_tot=np.int(len(dig_V_sub[:,1]))
-    
     global Y_C,X_C,Y_V,X_V,Xs_C,Xs_V,Xc_V,N_tot_walsh,Xc_C,t 
-    
-    N_tot_walsh = np.int(N_tot-fs_user_cycle)
+    #Nn=np.int(fs_user_cycle)
+    N_tot=len(dig_V_sub[:,1])
+    print(N_tot)
+    N_tot_walsh = N_tot-fs_user_cycle
     Xc_V = np.empty(([N_tot_walsh,3]))
     Xs_V = np.empty(([N_tot_walsh,3]))
     Xc_C = np.empty(([N_tot_walsh,3]))
@@ -277,8 +268,7 @@ def plot4():
     Y_V = np.empty(([N_tot_walsh,3]))
     X_C = np.empty(([N_tot_walsh,3]))
     Y_C = np.empty(([N_tot_walsh,3]))
-    t = np.empty(([N_tot_walsh,6]))
-    
+    t = np.empty(([N_tot_walsh,6]))    
     for i in np.arange(6):
         if i<3:
             t[:,i], Xc_V[:,i], Xs_V[:,i] = walsh( dig_V_sub[:,i])
@@ -289,6 +279,7 @@ def plot4():
             X_C[:,i-3] = np.sqrt(np.power(Xc_C[:,i-3],2)+np.power(Xs_C[:,i-3],2))
             Y_C[:,i-3] = np.arctan(Xs_C[:,i-3]/Xc_C[:,i-3])*180/np.pi
     
+    print(len(t[:,1]))
     # PLOTING -----------------------------------------------------------------
     f, axarr = plt.subplots(3, 2, figsize =(16, 10))
     f.suptitle('FFT En Magnitud', y=0.92, fontsize=16)
@@ -307,8 +298,7 @@ def plot4():
     axarr[1,1].plot(time_sub[:,4], C_sub[:,1], 'r-', label='Phase B')
     axarr[1,1].plot( t[:,4], X_C[:,1], 'm-', label='Phase B FFT(mag)')
     axarr[2,1].plot(time_sub[:,5], C_sub[:,2], 'g-', label='Phase C')
-    axarr[2,1].plot( t[:,5], X_C[:,2], 'y-', label='Phase C FFT(mag)')
-    
+    axarr[2,1].plot( t[:,5], X_C[:,2], 'y-', label='Phase C FFT(mag)')    
     for i in np.arange(3):
         axarr[i,0].set_xlabel('Time [sec]')
         axarr[i,0].set_ylabel('Voltage [V]')
@@ -338,8 +328,7 @@ def plot4():
     axarr[1,1].plot(time_sub[:,4], C_sub[:,1], 'r-', label='Phase B')
     axarr[1,1].plot( t[:,4], Y_C[:,1], 'm-', label='Phase B FFT[ang(rad)]')
     axarr[2,1].plot(time_sub[:,5], C_sub[:,2], 'g-', label='Phase C')
-    axarr[2,1].plot( t[:,5], Y_C[:,2], 'y-', label='Phase C FFT[ang(rad)]')
-    
+    axarr[2,1].plot( t[:,5], Y_C[:,2], 'y-', label='Phase C FFT[ang(rad)]')    
     for i in np.arange(3):
         axarr[i,0].set_xlabel('Time [sec]')
         axarr[i,0].set_ylabel('Angle (°)')
@@ -353,8 +342,7 @@ def plot4():
 
     
 def valo():
-     #Voltajes
-    
+     #Voltajes    
     a=('Voltaje fase A:', "{:.2f}".format(np.double(X_V[-1:,0])), 'V', "{:.2f}".format(np.double(Y_V[-1:,0])),'°')
     b=('Voltaje fase B:', "{:.2f}".format(np.double(X_V[-1:,1])), 'V', "{:.2f}".format(np.double(Y_V[-1:,1])),'°')
     c=('Voltaje fase C:', "{:.2f}".format(np.double(X_V[-1:,2])), 'V', "{:.2f}".format(np.double(Y_V[-1:,2])),'°')
