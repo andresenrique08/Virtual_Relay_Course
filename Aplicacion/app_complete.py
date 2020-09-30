@@ -161,13 +161,20 @@ def DFP():
     voltages = np.empty(([len(time),3]))
     currents = np.empty(([len(time),3]))
     # Reading voltaje and currents
+    voltages[:,0] = comtradeObj['A'][16]['values']
+    voltages[:,1] = comtradeObj['A'][17]['values']
+    voltages[:,2] = comtradeObj['A'][18]['values']
+    
+    currents[:,0] = comtradeObj['A'][0]['values']
+    currents[:,1] = comtradeObj['A'][1]['values']
+    currents[:,2] = comtradeObj['A'][2]['values']
     for i in np.arange(6):
         if i<3:
-            voltages[:,i] = comtradeObj['A'][i]['values']
+            # voltages[:,i] = comtradeObj['A'][i]['values']
             for j in np.arange(len(voltages[:,i])):
                 voltages[j,i]= voltages[j,i] * ratio_V
         else:
-            currents[:,i-3] = comtradeObj['A'][i]['values']
+            # currents[:,i-3] = comtradeObj['A'][i]['values']
             for j in np.arange(len(currents[:,i-3])):
                 currents[j,i-3]= currents[j,i-3] * ratio_C
             
@@ -458,7 +465,7 @@ frame12.grid(column=1, row=0, columnspan=1, rowspan=2, padx=10, pady=10)
 t1=Label(frame12,text="Seleccione la frecuencia \nde muestro del relé",fg="green")
 t1.grid(row=0,column=0,sticky="w",pady="20")
 en1=StringVar()
-d=OptionMenu(frame12, en1, "4","8","16","32")
+d=OptionMenu(frame12, en1, "4","8","16","32","64")
 d.grid(row=0,column=1,sticky="w",padx="20",pady="20")
 en1.set("Seleccionar")
 
