@@ -563,7 +563,7 @@ bhelp=Menu(bmenu,tearoff=0)
 barchiv.add_command(label="Abrir archivo ")#carga los archivos
 barchiv.add_command(label="Guardar")
 bmenu.add_cascade(label="Archivo",menu=barchiv)
-help
+#help
 
 bhelp.add_command(label="Descripción")
 bmenu.add_cascade(label="Ayuda",menu=bhelp)
