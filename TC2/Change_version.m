@@ -1,4 +1,4 @@
 clear all
-name = 'Falla_CG_120%_001ohm.mat';
+name = 'prueba_sampling.mat';
 load(name);
 save(name,'-v7');
