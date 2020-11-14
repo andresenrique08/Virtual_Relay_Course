@@ -8,7 +8,6 @@ Created on Mon Sep 28 06:57:05 2020
 import matplotlib.pyplot as plt
 import pyComtrade
 import numpy as np
-from scipy import signal, fftpack
 from tkinter import *
 from tkinter import filedialog
 from inspect import *
