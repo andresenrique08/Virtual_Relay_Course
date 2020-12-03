@@ -1,4 +1,4 @@
 clear all
-name = 'Falla_A_L1_100ohm';
+name = 'Falla_AG_15_0001ohm';
 load(name);
 save(name,'-v7');
