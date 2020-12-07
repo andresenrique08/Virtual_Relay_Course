@@ -1,0 +1,4 @@
+clear all
+name = 'Falla_AG_T15_0001ohm_T3';
+load(name);
+save(name,'-v7');
